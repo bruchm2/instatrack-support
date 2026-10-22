@@ -3,57 +3,167 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a0e">
-  <meta name="description" content="Official support for instaTRACK: Lap Timer. Get help with GPS lap timing, sessions, telemetry and onboard video.">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Support for instaTRACK, the iOS lap timer and onboard recording app.">
   <title>Support | instaTRACK</title>
   <style>
-    :root { color-scheme: dark; --bg:#090a0e; --panel:#12141b; --line:#2a2c35; --text:#f5f5f7; --muted:#a5a6b1; --accent:#f5e548; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; background:radial-gradient(ellipse at 85% 0%,#21152c 0%,transparent 35%),var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; line-height:1.65; }
-    .wrap { width:min(760px,calc(100% - 40px)); margin:0 auto; }
-    header { padding:42px 0 16px; }
-    .brand { font-size:22px; font-weight:800; letter-spacing:-.9px; text-decoration:none; color:var(--text); }
-    .brand span { color:var(--accent); }
-    main { padding:58px 0 80px; }
-    .eyebrow { font-size:12px; font-weight:800; letter-spacing:2.4px; text-transform:uppercase; color:var(--accent); }
-    h1 { font-size:clamp(42px,8vw,70px); letter-spacing:-2.8px; line-height:1.05; margin:14px 0 22px; }
-    h2 { font-size:22px; letter-spacing:-.5px; margin:0 0 12px; }
-    p { color:var(--muted); margin:0 0 16px; }
-    .intro { font-size:18px; max-width:590px; }
-    .card { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:26px; margin-top:24px; }
-    a { color:var(--accent); text-underline-offset:3px; overflow-wrap:anywhere; }
-    .mail { display:inline-block; font-weight:700; font-size:18px; margin:6px 0 12px; }
-    details { border-top:1px solid var(--line); padding:16px 0; }
-    details:first-of-type { border-top:0; }
-    summary { cursor:pointer; font-weight:650; }
-    details p { padding-top:10px; margin-bottom:0; }
-    footer { border-top:1px solid var(--line); padding:25px 0 45px; color:var(--muted); font-size:13px; }
-    footer .wrap { display:flex; flex-wrap:wrap; gap:10px 25px; justify-content:space-between; }
-    @media(max-width:500px) { header{padding-top:25px;} main{padding-top:34px;} .card{padding:20px;} }
+    :root {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f9f3ff;
+      background: #090412;
+      line-height: 1.7;
+      --pink: #ff24cc;
+      --violet: #8e27ff;
+      --gold: #ffd53c;
+      --orange: #ff861c;
+      --muted: #c6b8d8;
+      --border: rgba(235, 130, 255, .23);
+      --gradient: linear-gradient(105deg, #ffdc35 0%, #ff941d 26%, #ff35a9 59%, #a32cff 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 65% 26% at 88% 0%, rgba(188, 29, 255, .25), transparent 78%),
+        radial-gradient(ellipse 52% 22% at 0% 25%, rgba(255, 103, 28, .12), transparent 80%),
+        #090412;
+    }
+    main { max-width: 860px; margin: auto; padding: 50px 26px 90px; }
+    header {
+      display: flex; justify-content: space-between; align-items: center; gap: 20px;
+      padding-bottom: 28px; border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-size: 1.55rem; font-weight: 900; letter-spacing: .025em;
+      color: #fff;
+    }
+    .brand span {
+      background: var(--gradient);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lang { display: flex; gap: 8px; }
+    button {
+      background: #1b102b; border: 1px solid #58316c; color: #f7eaff;
+      border-radius: 10px; padding: 9px 15px; font-weight: 750;
+      cursor: pointer; transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    button:hover { border-color: var(--pink); }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    button[aria-pressed="true"] {
+      background: linear-gradient(115deg, #ffad24, #ff348e 65%, #a126ff);
+      border-color: #ff9b5b; color: #150518;
+      box-shadow: 0 3px 20px rgba(255, 46, 180, .25);
+    }
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold); font-size: .78rem; font-weight: 850;
+      letter-spacing: .17em; text-transform: uppercase; margin: 48px 0 12px;
+    }
+    h1 {
+      font-size: clamp(2.3rem, 7vw, 4rem); line-height: 1.1;
+      letter-spacing: -.045em; margin: 0 0 20px;
+      background: var(--gradient); -webkit-background-clip: text;
+      background-clip: text; color: transparent;
+    }
+    h2 { font-size: 1.24rem; margin: 40px 0 12px; color: #fff2fb; }
+    h2::before { content: ''; display: inline-block; width: 4px; height: .9em;
+      margin-right: 11px; border-radius: 5px; background: var(--gradient); }
+    p, li { color: var(--muted); }
+    p { margin: 10px 0; }
+    ul { padding-left: 23px; }
+    li { margin: 8px 0; padding-left: 3px; }
+    li::marker { color: #ff6cbb; }
+    strong { color: #fff3ff; }
+    .lead { font-size: 1.12rem; color: #e9dcf5; }
+    .meta { color: #ab91c2; font-size: .9rem; }
+    .note {
+      position: relative; overflow: hidden;
+      border: 1px solid rgba(255, 86, 197, .28);
+      border-left: 4px solid #ff9a26;
+      background: linear-gradient(110deg, rgba(255, 147, 33, .10), rgba(242, 34, 192, .11) 54%, rgba(116, 32, 221, .14));
+      border-radius: 0 14px 14px 0; padding: 17px 21px; margin: 30px 0;
+    }
+    .note strong { color: #ffd94e; }
+    .note p { color: #e5d7ed; }
+    a { color: #ff9cdd; text-underline-offset: 3px; }
+    a:hover { color: #ffdb62; }
+    footer {
+      margin-top: 60px; padding-top: 25px; border-top: 1px solid var(--border);
+      color: #a993bf; font-size: .85rem;
+    }
+    [hidden] { display: none !important; }
+    @media (max-width: 460px) {
+      main { padding: 26px 18px 65px; }
+      header { align-items: center; }
+      .brand { font-size: 1.22rem; }
+      button { padding: 8px 11px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
 <body>
-  <header class="wrap"><a class="brand" href="/" aria-label="instaTRACK support">insta<span>TRACK</span></a></header>
-  <main class="wrap">
-    <div class="eyebrow">instaTRACK: Lap Timer</div>
-    <h1>Support<span style="color:var(--accent)">.</span></h1>
-    <p class="intro">Need help with instaTRACK? We're here to help you get back on track.</p>
-    <section class="card" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact support</h2>
-      <p>For questions, feedback or technical issues, email us at:</p>
-      <a class="mail" href="mailto:maciejbruchit@gmail.com?subject=instaTRACK%20Support">maciejbruchit@gmail.com</a>
-      <p>When reporting an issue, please include your iPhone model, iOS version, app version and a short description of what happened. Please don't send passwords or other sensitive information.</p>
-    </section>
-    <section class="card" aria-labelledby="faq-title">
-      <h2 id="faq-title">Frequently asked questions</h2>
-      <details><summary>Which tracks are supported?</summary><p>Tor Poznań is the first supported circuit. Support for additional tracks in Poland and internationally is planned for future updates.</p></details>
-      <details><summary>Does the app work without internet?</summary><p>Yes. instaTRACK is designed to work offline, and session data is stored locally on your device.</p></details>
-      <details><summary>How does OBD-II telemetry connect?</summary><p>OBD-II telemetry uses compatible Bluetooth Low Energy (BLE) devices. Compatibility can vary by adapter and vehicle.</p></details>
-      <details><summary>Where are onboard videos saved?</summary><p>Finished onboard videos are saved to your iPhone Photos library when you choose to save them.</p></details>
-      <details><summary>How can I report a bug or suggest a track?</summary><p>Email <a href="mailto:maciejbruchit@gmail.com?subject=instaTRACK%20Feedback">maciejbruchit@gmail.com</a> with a short description. Suggestions for new tracks are welcome.</p></details>
-    </section>
-    <p style="margin-top:28px">Privacy information: <a href="https://privacy.instatrack.pl/">instaTRACK Privacy Policy</a></p>
-  </main>
-  <footer><div class="wrap"><span>© 2026 instaTRACK. All rights reserved.</span><span>Measure. Record. Analyze.</span></div></footer>
+<main>
+  <header>
+    <div class="brand">insta<span>TRACK</span></div>
+    <nav class="lang" aria-label="Language / Język">
+      <button type="button" id="enBtn" aria-pressed="true" onclick="setLanguage('en')">EN</button>
+      <button type="button" id="plBtn" aria-pressed="false" onclick="setLanguage('pl')">PL</button>
+    </nav>
+  </header>
+
+  <article id="en" lang="en">
+    <p class="eyebrow">instaTRACK · iOS</p>
+    <h1>Support</h1>
+    <p class="lead">Need help with instaTRACK? We're here to help you get back on track.</p>
+    <div class="note"><strong>Contact support</strong><p>For questions, technical issues or feedback, email <a href="mailto:maciejbruchit@gmail.com">maciejbruchit@gmail.com</a>. Please include your iPhone model, iOS version and a short description of the issue. Do not send sensitive location or vehicle data unless necessary.</p></div>
+    <h2>Frequently asked questions</h2>
+    <p><strong>Which race tracks are supported?</strong></p>
+    <p>Tor Poznań is the first supported track. Support for more tracks in Poland and worldwide is planned for future updates.</p>
+    <p><strong>Does instaTRACK work offline?</strong></p>
+    <p>Yes. Core lap timing and session features work without an internet connection.</p>
+    <p><strong>How does OBD-II telemetry work?</strong></p>
+    <p>Vehicle telemetry requires a compatible OBD-II adapter using Bluetooth Low Energy (BLE). Availability of individual readings depends on the vehicle and adapter.</p>
+    <p><strong>Where are my recordings saved?</strong></p>
+    <p>Completed onboard videos are saved to the Photos library on your iPhone.</p>
+    <h2>Privacy</h2>
+    <p>Learn how instaTRACK handles data in our <a href="https://privacy.instatrack.pl/">Privacy Policy</a>.</p>
+  </article>
+
+  <article id="pl" lang="pl" hidden>
+    <p class="eyebrow">instaTRACK · iOS</p>
+    <h1>Pomoc techniczna</h1>
+    <p class="lead">Potrzebujesz pomocy z instaTRACK? Pomożemy Ci wrócić na tor.</p>
+    <div class="note"><strong>Kontakt ze wsparciem</strong><p>Masz pytanie, problem techniczny lub sugestię? Napisz na <a href="mailto:maciejbruchit@gmail.com">maciejbruchit@gmail.com</a>. Podaj model iPhone’a, wersję iOS oraz krótki opis problemu. Nie przesyłaj wrażliwych danych lokalizacyjnych ani danych pojazdu, jeśli nie jest to konieczne.</p></div>
+    <h2>Najczęściej zadawane pytania</h2>
+    <p><strong>Jakie tory są obsługiwane?</strong></p>
+    <p>Pierwszym obsługiwanym torem jest Tor Poznań. Obsługa kolejnych torów w Polsce i na świecie jest planowana w przyszłych aktualizacjach.</p>
+    <p><strong>Czy instaTRACK działa offline?</strong></p>
+    <p>Tak. Podstawowe funkcje pomiaru okrążeń i obsługi sesji działają bez internetu.</p>
+    <p><strong>Jak działa telemetria OBD-II?</strong></p>
+    <p>Telemetria pojazdu wymaga zgodnego adaptera OBD-II Bluetooth Low Energy (BLE). Dostępne odczyty zależą od samochodu i adaptera.</p>
+    <p><strong>Gdzie zapisują się nagrania?</strong></p>
+    <p>Gotowe filmy onboard są zapisywane w bibliotece Zdjęcia na iPhonie.</p>
+    <h2>Prywatność</h2>
+    <p>Informacje o przetwarzaniu danych znajdziesz w <a href="https://privacy.instatrack.pl/">Polityce prywatności</a>.</p>
+  </article>
+  <footer>© 2026 instaTRACK · <span id="footerLabel">Support</span></footer>
+</main>
+<script>
+  function setLanguage(lang) {
+    const isPl = lang === 'pl';
+    document.getElementById('en').hidden = isPl;
+    document.getElementById('pl').hidden = !isPl;
+    document.getElementById('enBtn').setAttribute('aria-pressed', String(!isPl));
+    document.getElementById('plBtn').setAttribute('aria-pressed', String(isPl));
+    document.getElementById('footerLabel').textContent = isPl ? 'Pomoc techniczna' : 'Support';
+    document.documentElement.lang = lang;
+    document.title = (isPl ? 'Pomoc techniczna' : 'Support') + ' | instaTRACK';
+  }
+  const queryLang = new URLSearchParams(window.location.search).get('lang');
+  const preferredLang = queryLang === 'pl' || queryLang === 'en' ? queryLang : (navigator.language.toLowerCase().startsWith('pl') ? 'pl' : 'en');
+  setLanguage(preferredLang);
+</script>
 </body>
 </html>
